@@ -1,0 +1,22 @@
+#! /bin/sh
+
+rm -f solutions*
+touch solutions
+for i in 1 2 3 4 5 6 7 8 9 10
+do
+    echo solving board $i...
+    ./sudoku boards/board$i >> solutions
+done
+
+tr -d " " < solutions | uniq > solutions2
+mv solutions2 solutions
+
+diff -Bb -q solutions correct_solutions
+if [ $? -eq 0 ]
+then
+  echo Test script passed!
+else
+  echo Test script failed!
+  echo Compare the files: \"solutions\" and \"correct_solutions\".
+fi
+
