@@ -5,10 +5,10 @@
 default: fast
 
 slow:
-	ocamlc -o sudoku sudoku.ml
+	ocamlc -o sudoku /usr/lib/ocaml/bigarray.mli sudoku.ml
 
 fast:
-	ocamlopt.opt -o sudoku bigarray.cmxa sudoku.ml
+	ocamlopt -o sudoku bigarray.cmxa sudoku.ml
 
 clean:
 	rm -f *.cmo *.cmi *.cmx *.o sudoku solutions
